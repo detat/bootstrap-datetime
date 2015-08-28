@@ -1,5 +1,5 @@
 {
-  "name": "bootstrap-datepicker",
+  "name": "bootstrap-datetime",
   "version": "1.4.1-dev",
   "main": [
     "dist/css/bootstrap-datepicker3.css",
