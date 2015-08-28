@@ -119,7 +119,7 @@
 			this.picker.addClass('datepicker-inline').appendTo(this.element);
 		}
 		else {
-			this.picker.addClass('datepicker-dropdown dropdown-menu');
+			this.picker.addClass('datepicker-dropdown dropdown-menu').insertAfter(this.element);
 		}
 
 		if (this.o.rtl){
@@ -474,7 +474,7 @@
 			if (this.element.attr('readonly') && this.o.enableOnReadonly === false)
 				return;
 			if (!this.isInline)
-				this.picker.appendTo(this.o.container);
+				this.picker.insertAfter(this.element);//appendTo(this.o.container);
 			this.place();
 			this.picker.show();
 			this._attachSecondaryEvents();
@@ -673,7 +673,7 @@
 			var calendarWidth = this.picker.outerWidth(),
 				calendarHeight = this.picker.outerHeight(),
 				visualPadding = 10,
-				container = $(this.o.container),
+				container = $(this.element);//o.container),
 				windowWidth = container.width(),
 				windowHeight = container.height(),
 				scrollTop = container.scrollTop(),
@@ -750,6 +750,20 @@
 					zIndex: zIndex
 				});
 			}
+//WORKAROUND >>>>
+			$input = this.isInput ? this.element : this.element.find('input');
+			if($input.length) {
+				$pr = $input.parent();
+				this.picker.position($input.position());
+				this.picker.offset($input.offset());
+				this.picker.css({
+					top: $pr.position().top +  parseInt($('input[name="transfered_to_ciklum_start_date"]').css('height')) + 'px',
+					left: 'inherit',
+					right: '0px'
+				});
+			}
+//<<<< WORKAROUND
+
 			return this;
 		},
 
