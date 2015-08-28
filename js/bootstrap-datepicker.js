@@ -751,7 +751,7 @@
 				});
 			}
 //WORKAROUND >>>>
-			$input = this.isInput ? this.element : this.element.find('input');
+			var $input = this.isInput ? this.element : this.element.find('input');
 			if($input.length) {
 				$pr = $input.parent();
 				this.picker.position($input.position());
